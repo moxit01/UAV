@@ -1,14 +1,9 @@
-@media only-screen and (min-width: 700px) and (max-width: 1300px) {
-  .col-md {
-    width: auto;
-    height: auto;
-  }
-}
+
 
 .Main-wrapper {
   width: 100%;
   margin-top: 1%;
-  height: 23%;
+  height: 180px;
   background-color: black
 }
 
@@ -16,14 +11,19 @@
   height: 10%;
 }
 
-.container-fluid side-container {
-  height: 20%;
-}
+
 
 .container {
   padding-top: 1.5%;
 }
 
+body{
+  background: black;
+}
+
+.justify-content-around{
+  padding:15px ;
+}
 
 
 
@@ -118,11 +118,12 @@
 }
 
 .side-container {
-  height: 60%;
+  height: 550px;
   border: 1px solid white;
-  width: 20%;
+  width: 300px;
   float: left;
-  background-color: black
+  background-color: black;
+  padding-top: 20px;
 }
 
 .firstrow {
@@ -135,7 +136,8 @@
 
 
 .grid-container {
-  background-color: black
+  background-color: black;
+  padding-bottom: 120px;
 }
 
 
