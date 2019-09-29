@@ -24,13 +24,13 @@
       <div class="col-sm col1-wrapper">
           <div class="container" padding-right="50px">
               <div style="padding:10px">
-                  <button> Coordinates of Human Detection</button>
+                   <button name="human"> Coordinates of Human Detection</button>
                   <button> Telemetry Data</button>
                   <button> Change Detection</button>
               </div>
               <div style="padding:10px">
-                 <button>Coordinates of Feature Detection</button>
-                 <button>Drone Status</button>
+                 <button >Coordinates of Feature Detection</button>
+                 <button  (click)='onDroneStatus()'>Drone Status</button>
                  <button>Suspected Movement</button>
               </div>   
           </div>
@@ -94,7 +94,22 @@
    <!-- <div class="col-lg-2">
       <div class="col-md-2">-->
     
-        <p style=" color:white">this is the analysis div</p>
+        <div ng-switch="name">
+                <div ng-switch-when="onHumanDetection()">
+                    <p *ngFor="let data of data">
+                        <b class="Bold-class">
+                          Name: {{ data.featureName }} Latitude: {{ data.featureLat }} Longitude:{{data.featureLong}}
+                        </b>
+                        </p>
+                </div>
+                <div ng-switch-when="onDroneStatus()">
+                    <p *ngFor="let data of data">
+                        <b class="Bold-class">
+                          Battery: {{data.battery}} Signal: {{data.signalstrength}}
+                        </b>
+                        </p>
+                </div>
+        </div>
 
      <!-- </div>
     </div>-->
@@ -114,13 +129,11 @@
             </video>
           
   </div>
+
+        
   <div class="row secondrow justify-content-around">
     
-          <video  width="495" height="285" controls>
-              <source src="movie.mp4" type="video/mp4">
-              <source src="movie.ogg" type="video/ogg">
-            Your browser does not support the video tag.
-            </video>
+          <div id="mapId1" style="width:495px ; height: 285px "></div>
           <video  width="495" height="285" controls>
               <source src="movie.mp4" type="video/mp4">
               <source src="movie.ogg" type="video/ogg">

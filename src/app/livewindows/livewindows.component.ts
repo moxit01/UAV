@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Map, latLng, tileLayer, Layer, marker , imageOverlay , layerControls  } from 'leaflet';
+import { HttpClient } from '@angular/common/http';
+import { HttpService } from '../services/http.service';
 
 declare let L;
 
@@ -9,7 +11,7 @@ declare let L;
   styleUrls: ['./livewindows.component.css']
 })
 export class LivewindowsComponent implements OnInit {
-  constructor() { }
+  constructor(private http: HttpClient , private httpservice1: HttpService) { }
 
   map: Map;
   layercontrol: layerControls;
@@ -51,6 +53,16 @@ export class LivewindowsComponent implements OnInit {
   overlay3: imageOverlay;
 
 
+  data: any ;
+  private req: any ;
+  url = 'http://159.89.83.73:8000/api/features/?format=json' ;
+  data1: any;
+  show  = true ;
+  drone = true;
+
+
+
+
   ngOnInit() {
       this.map = new L.Map('mapId').setView(new L.latLng(22.995884, 72.516012), 18);
       tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
@@ -58,14 +70,40 @@ export class LivewindowsComponent implements OnInit {
       },
      ).addTo(this.map);
 
+      this.map = new L.Map('mapId1').setView(new L.latLng(22.995884, 72.516012), 18);
+      tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        attribution: 'vartronics.com © ionic LeafLet',
+      },
+     ).addTo(this.map);
       this.overlay = new L.imageOverlay(this.imageURL , this.imagebounds ).addTo(this.map);
   //    this.overlay1 = new L.imageOverlay(this.imageURL1 , this.imagebounds1).addTo(this.map);
    //   this.overlay2 = new L.imageOverlay(this.imageURL2 , this.imagebounds2).addTo(this.map);
 
 
-
+      this.map.panBy([this.data]);
 
     }
+
+    onHumanDetection() {
+       this.httpservice1.humandetection().subscribe(data => {
+        console.log(data);
+        this.data = data as [any];
+});
+    }
+
+  onDroneStatus() {
+    this.httpservice1.dronestatus().subscribe(data => {
+      console.log(data);
+      this.data = data as [any];
+});
+  }
+
+  onPointPlot() {
+    this.httpservice1.getPlotPoints().subscribe(datum => {
+      console.log(datum);
+      this.data = datum as [any];
+    });
   }
 
 
+}

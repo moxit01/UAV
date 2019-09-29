@@ -8,7 +8,9 @@ import { LivewindowsComponent } from './livewindows/livewindows.component';
 import { MainWindowComponent } from './main-window/main-window.component';
 import { HeaderComponent } from './main-window/header/header.component';
 import { LoginComponent } from './login/login.component';
-import {HttpClientModule } from '@angular/common/http';
+import { ShowDataComponent } from './show-data/show-data.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpService } from './services/http.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,7 @@ import {HttpClientModule } from '@angular/common/http';
     MainWindowComponent,
     HeaderComponent,
     LoginComponent,
+    ShowDataComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,9 @@ import {HttpClientModule } from '@angular/common/http';
     AngularCesiumModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+ providers: [
+    HttpService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
